@@ -1,0 +1,11 @@
+.weeklyMetrics {
+    width: 100%;
+
+    text-align: left;
+
+    background-color: var(--background-color-lighter);
+    border-radius: 10px;
+    padding: 20px;
+
+    flex: 2;
+}

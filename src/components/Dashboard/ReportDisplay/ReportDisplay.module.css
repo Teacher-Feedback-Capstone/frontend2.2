@@ -1,0 +1,14 @@
+.ReportDisplay {
+    width: 95%;
+    border: solid var(--background-color-light) 2px;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--background-color-lighter);
+    height: auto;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.content {
+    padding: 20px;
+}

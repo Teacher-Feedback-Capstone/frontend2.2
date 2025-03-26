@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Gradient + Noise</title>
+  <style>
+    /* Basic reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .gradient-noise {
+      width: 250px;
+      height: 1000px;
+      position: relative;
+      /* Animate the gradient by shifting its background position */
+      background: linear-gradient(180deg, rgba(0,0,255,1), rgb(255, 9, 189), green);
+      /* Increase the background height for visible movement */
+      background-size: 100% 600%;
+      animation: moveGradient 10s ease infinite alternate;
+      filter: contrast(170%) brightness(850%);
+      overflow: hidden;
+    }
+    
+    @keyframes moveGradient {
+        0% {
+            background-position: center 40%;
+        }
+        100% {
+            background-position: center 0%;
+        }
+    }
+    
+    /* Noise overlay using a pseudo-element */
+    .gradient-noise::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('noise.svg');
+      background-repeat: repeat;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-noise"></div>
+</body>
+</html>

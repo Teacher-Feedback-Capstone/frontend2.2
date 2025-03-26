@@ -1,0 +1,133 @@
+.LoginMenu {
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    width: 40vh;
+    background-color: None;
+    color: white;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0px 15px white;
+    border: solid white 2px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2vh;
+}
+
+input {
+    height: 5vh;
+    font-size: 1em;
+    width: 30vh;
+    border-radius: 10px;
+    background-color: #222222;
+    color: white;
+}
+
+input[type="text"] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+input[type="password"] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: white;
+    outline: none;
+}
+
+input[type="password"]:focus {
+    border-color: white;
+    outline: none;
+}
+
+.InputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    width: 100%;
+}
+
+.SubmitButton {
+    background-color: white;
+    color: black;
+    border: solid white 2px;
+    /* margin-top: 1vh; */
+    padding: 0.5vh 3vh;
+    font-size: 1em;
+    cursor: pointer;
+    width: 20vh;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+}
+
+.SubmitButton:hover {
+    background-color: var(--background-color);
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.SignUp {
+    background-color: white;
+    color: black;
+    border: solid white 2px;
+    padding: 0.5vh 3vh;
+    font-size: 1em;
+    cursor: pointer;
+    width: 20vh;
+    border-radius: 10px;
+}
+
+.SignUp:hover {
+    background-color: var(--background-color);
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.welcome {
+    font-size: 1.2em;
+    padding: 30px;
+    font-weight: bold;
+}
+
+.welcomeText {
+    width: 100%;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.25s;
+}
+
+.alert {
+    color: red;
+    font-size: 1em;
+    font-weight: bold;
+
+    /* margin-top: 1vh; */
+}

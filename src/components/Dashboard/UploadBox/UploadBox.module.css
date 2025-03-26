@@ -1,0 +1,57 @@
+.uploadZone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+    border: 2px dashed #d9d9d9;
+    border-radius: 5px;
+    background-color: var(--background-color-light);
+    cursor: pointer;
+    transition: border 1s, background-color 1s;
+}
+
+.uploadZone.dragging {
+    background-color: var(--primary-color);
+    border: var(--primary-color) 5px dashed;
+    }
+
+.uploadBox {
+    width: 100%;
+
+    text-align: left;
+
+    background-color: var(--background-color-lighter);
+    border-radius: 10px;
+    padding: 20px;
+
+    flex: 3;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+  
+
+
+
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  
+    width: 80%;
+    height: 45px;
+  
+}
+
+    .buttonContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        font-size: 1.5em;
+        font-weight: bold;
+    }

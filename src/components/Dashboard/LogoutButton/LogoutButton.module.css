@@ -1,0 +1,26 @@
+.logout > button {
+  background-color: var(--background-color-light);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  width: 80%;
+  height: 45px;
+  transition: background-color, color 0.5s;
+}
+
+.buttonContent {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.logout > button:hover {
+  background-color: var(--text-color);
+  color: black;
+}
