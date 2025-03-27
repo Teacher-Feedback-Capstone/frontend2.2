@@ -4,4 +4,27 @@
     background-color: var(--background-color-light);
     border-radius: 10px;
     margin-bottom: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.ReportButton:hover {
+    background-color: var(--background-color);
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    /* background-color: var(--background-color-light); */
 }

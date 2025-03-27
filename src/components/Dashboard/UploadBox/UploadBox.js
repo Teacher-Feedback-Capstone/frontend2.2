@@ -1,15 +1,18 @@
 import React, { useState, useCallback, useRef } from 'react';
 import styles from './UploadBox.module.css';
 import uploadFile from '../../../api/file-upload';
+import socketService from '../../../api/socket';
 
 const UploadBox = () => {
   const [isDragging, setIsDragging] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [progressText, setProgressText] = useState("Uploading..");
   const fileInputRef = useRef(null);
 
   const setUploadStatus = (status) => {
     console.log(status);
-  }
+  };
 
   const handleDragOver = useCallback((e) => {
     e.preventDefault();
@@ -43,17 +46,46 @@ const UploadBox = () => {
 
   const handleUpload = async () => {
     if (!selectedFile) return;
+    setIsLoading(true); // start loading
+    setProgressText("Uploading..");
+
     const formData = new FormData();
-    // key 'audio' as per your backend requirement
     formData.append('audio', selectedFile);
 
+    // flag to indicate if we want to keep the loader active after upload
+    let continueLoading = false;
+
     try {
-      await uploadFile(formData, setUploadStatus);
-      console.log('Upload successful');
-      // Optionally clear selected file after upload
+      const response = await uploadFile(formData, setUploadStatus);
+      const jobId = response.sessionId;
+
+      if (jobId) {
+        continueLoading = true;
+        console.log('Job ID:', jobId);
+        socketService.emit('joinRoom', jobId);
+        // swap progress text after upload completes
+        setProgressText("Incoming socket.io job updates");
+
+        socketService.on('progressUpdate', (data) => {
+          console.log('Job progress:', data);
+          const progress = data.progress;
+          // update progress text with live progress details
+          setProgressText(`Processing.. ${progress}%`);
+          if (progress === 100) {
+            // turn off loader when job is done
+            setIsLoading(false);
+          }
+        });
+      }
+
       setSelectedFile(null);
     } catch (err) {
       console.error('Upload failed', err);
+    } finally {
+      // if no jobId came back, turn off the loader; otherwise, keep it visible
+      if (!continueLoading) {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -67,7 +99,12 @@ const UploadBox = () => {
         onDrop={handleDrop}
         onClick={handleClick}
       >
-        {selectedFile ? (
+        {isLoading ? (
+          <>
+            <div className={styles.loader}></div>
+            <code className={styles.progressText}>{progressText}</code>
+          </>
+        ) : selectedFile ? (
           <>
             <p>Selected file: {selectedFile.name}</p>
             <button
@@ -77,13 +114,13 @@ const UploadBox = () => {
               }}
             >
               <div className={styles.buttonContent}>Upload & Grade</div>
-              </button>
+            </button>
           </>
         ) : (
-          <>
+          <div className={styles.instructionText}>
             <p>Drag an audio file here to get started</p>
             <p>or click to select a file.</p>
-          </>
+          </div>
         )}
       </div>
       <input

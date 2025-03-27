@@ -17,6 +17,7 @@ export const uploadFile = async (formData, setUploadStatus) => {
 
         setUploadStatus('Upload successful!');
         console.log('Server response:', res.data);
+        return res.data;
     } catch (err) {
         setUploadStatus('Upload failed 😢');
         console.error('Error uploading:', err);
