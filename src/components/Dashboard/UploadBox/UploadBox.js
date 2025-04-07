@@ -8,6 +8,7 @@ const UploadBox = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [progressText, setProgressText] = useState("Uploading..");
+  const [subject, setSubject] = useState('');
   const fileInputRef = useRef(null);
 
   const setUploadStatus = (status) => {
@@ -51,6 +52,7 @@ const UploadBox = () => {
 
     const formData = new FormData();
     formData.append('audio', selectedFile);
+    formData.append('subject', subject); // example subject
 
     // flag to indicate if we want to keep the loader active after upload
     let continueLoading = false;
@@ -91,7 +93,20 @@ const UploadBox = () => {
 
   return (
     <div className={styles.uploadBox}>
-      <h1>Upload</h1>
+      <div className={styles.uploadHeader}>
+        <h1>Upload</h1>
+        <div className={styles.subjectInputContainer}>
+          <label htmlFor="subject" className={styles.subjectLabel}>
+            Subject:
+          </label>
+          <textarea
+            className={styles.subjectInput}
+            placeholder="eg. 'History of Cats'"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+          ></textarea>
+        </div>
+      </div>
       <div
         className={`${styles.uploadZone} ${isDragging ? styles.dragging : ''}`}
         onDragOver={handleDragOver}

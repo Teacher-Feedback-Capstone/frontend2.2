@@ -110,3 +110,44 @@
 .progressText {
     padding-top: 20px;
 }
+
+.uploadHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    /* background-color: red; */
+}
+
+.subjectInputContainer {
+    /* margin-left: 100px; */
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+    gap: 20px
+}
+
+.subjectInput {
+    width: 100%;
+    /* padding: 10px; */
+    border-radius: 5px;
+    /* border: 1px solid #ccc; */
+
+    background-color: var(--background-color-lighter);
+    color: var(--text-color);
+}
+
+
+.subjectInput:focus {
+    outline: none;
+    border: 1px solid var(--secondary-color);
+}
+
+.subjectLabel {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+}

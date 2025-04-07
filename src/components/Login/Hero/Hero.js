@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styles from './Hero.module.css'
 import Logo from '../../Logo/Logo'
+import PersonCard from '../PersonCard/PersonCard'
 
 export default class Hero extends Component {
   render() {
@@ -11,6 +12,40 @@ export default class Hero extends Component {
                 <Logo size="2em" color='white' padding=".1em" showVersion={true} />
                 {/* <div className="signUp">Start using the </div> */}
                 <section>an <b>AI-powered 🧠</b>, automated teacher observation tool</section>
+                <div className={styles.PersonCardViewer}>
+                    <div className={styles.ScrollContainer}>
+                    <PersonCard
+                     name="Nathan Dilla"
+                     work="Computer Science Student"
+                     school="Grand Canyon University"
+                     email="nathancdilla@gmail.com"
+                      />
+                    <PersonCard
+                     name="Evan Lloyd"
+                     work="Computer Science Student"
+                     school="Grand Canyon University"
+                     email="evanlloyd@gmail.com"
+                      />
+                    <PersonCard
+                     name="Josh Slinkman"
+                     work="Computer Science Student"
+                     school="Grand Canyon University"
+                     email="joshuaslinkymister@gmail.com"
+                      />
+                    <PersonCard
+                     name="Alex Fried"
+                     work="Computer Science Student"
+                     school="Grand Canyon University"
+                     email="alexadander@gmail.com"
+                      />
+                    <PersonCard
+                     name="Thom Luedemann"
+                     work="Prinicpal"
+                     school="Squidward Highschool"
+                     email="squidwardschool@gmail.com"
+                      />
+                    </div>
+                </div>
             </div>
             
             <svg width="0" height="0">
@@ -22,7 +57,6 @@ export default class Hero extends Component {
                 <feBlend in="SourceGraphic" in2="desaturatedNoise" mode="multiply"/>
                 </filter>
             </svg>
-
         </div>
     )
   }

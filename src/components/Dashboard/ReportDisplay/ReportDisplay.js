@@ -5,7 +5,7 @@ import ReportButton from '../ReportButton/ReportButton';
 
 import fetchReports from '../../../api/report';
 
-const ReportDisplay = ({ user }) => {
+const ReportDisplay = ({ user, reportEvent }) => {
   const [reports, setReports] = useState([]);
 
   const setReportStatus = (reportId, status) => {
@@ -30,22 +30,26 @@ const ReportDisplay = ({ user }) => {
       <div className={styles.content}>
         <h1>Reports</h1>
         <div className={styles.reports}>
-          {reports.length === 0 ? (
+          {!reports || reports.length === 0 ? (
             <p>No reports yet!</p>
           ) : (
-            reports.map((report, index) => {
-              const date = new Date(report.created_at);
-              const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
-              const formattedDate = date.toLocaleDateString('en-US');
-              const formattedTime = date.toLocaleTimeString('en-US');
+            reports
+              .slice()
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // Sort reports by most recent
+              .map((report, index) => {
+                const date = new Date(report.created_at);
+                const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
+                const formattedDate = date.toLocaleDateString('en-US');
+                const formattedTime = date.toLocaleTimeString('en-US');
 
-              return (
-                <ReportButton
-                  key={report.id || index}
-                  date={`${dayOfWeek}, ${formattedDate} at ${formattedTime}`}
-                />
-              );
-            })
+                return (
+                  <ReportButton
+                    key={report.id || index}
+                    date={`${dayOfWeek}, ${formattedDate} at ${formattedTime}`}
+                    onClick={() => reportEvent(report)} // 💥 this line does the trick
+                  />
+                );
+              })
           )}
         </div>
       </div>

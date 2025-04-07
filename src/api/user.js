@@ -20,6 +20,8 @@ export const loginUser = async (username, password) => {
     console.log(apiUrl)
     const response = await axios.post(`${apiUrl}/login`, { username, password });
     sessionStorage.setItem('jwtToken', response.data.token);
+    sessionStorage.setItem('userId', response.data.userId);
+    sessionStorage.setItem('username', username);
     return response.data;
   } catch (error) {
     return handleError(error);
